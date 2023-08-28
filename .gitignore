@@ -13,7 +13,9 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-lists.build/
+*.cmd
+*.exe
+*.build/
 .Python
 build/
 develop-eggs/
