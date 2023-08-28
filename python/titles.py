@@ -5,8 +5,7 @@ def solve(s: str):
     result = []
     
     for word in words:
-        restored_word = word
-        if re.match(r'\w+', word):
+        if word:
             restored_word = word.capitalize()
         result.append(restored_word)
     
