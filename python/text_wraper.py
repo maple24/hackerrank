@@ -1,19 +1,21 @@
 import textwrap
 
+
 def wrap(string: str, max_width: int) -> list:
     # res = textwrap.wrap(string, max_width)
     res = []
-    substring = ''
+    substring = ""
     for i, s in enumerate(string):
         substring += s
         if len(substring) == max_width:
             res.append(substring)
-            substring = ''
+            substring = ""
     if substring:
         res.append(substring)
     return "\n".join(res)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     string, max_width = input(), int(input())
     result = wrap(string, max_width)
     print(result)

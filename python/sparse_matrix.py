@@ -1,5 +1,6 @@
 from typing import List, Dict, Tuple
 
+
 class SparseMatrix:
     def __init__(self, shape: Tuple[int, int], data: Dict[Tuple[int, int], int]):
         self.rows, self.cols = shape
@@ -15,7 +16,7 @@ class SparseMatrix:
     def get(self, row: int, col: int) -> int:
         return self.elements.get((row, col), 0)
 
-    def add(self, other: 'SparseMatrix') -> 'SparseMatrix':
+    def add(self, other: "SparseMatrix") -> "SparseMatrix":
         if self.rows != other.rows or self.cols != other.cols:
             raise ValueError("Matrix dimensions do not match")
 
@@ -26,7 +27,7 @@ class SparseMatrix:
 
         return result
 
-    def subtract(self, other: 'SparseMatrix') -> 'SparseMatrix':
+    def subtract(self, other: "SparseMatrix") -> "SparseMatrix":
         if self.rows != other.rows or self.cols != other.cols:
             raise ValueError("Matrix dimensions do not match")
 
@@ -45,14 +46,18 @@ class SparseMatrix:
             print(row_str)
 
     @classmethod
-    def from_dense_matrix(cls, dense_matrix: List[List[int]]) -> 'SparseMatrix':
+    def from_dense_matrix(cls, dense_matrix: List[List[int]]) -> "SparseMatrix":
         shape = (len(dense_matrix), len(dense_matrix[0]))
-        data = {(row, col): value for row, row_data in enumerate(dense_matrix)
-                for col, value in enumerate(row_data) if value != 0}
+        data = {
+            (row, col): value
+            for row, row_data in enumerate(dense_matrix)
+            for col, value in enumerate(row_data)
+            if value != 0
+        }
         return cls(shape, data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Example usage
     dense_matrix1 = [[0, 1, 2], [1, 2, 0]]
     dense_matrix2 = [[3, 0, 0], [0, 4, 5]]
@@ -60,7 +65,7 @@ if __name__ == '__main__':
     # Creating sparse matrices from dense matrices
     sparse_matrix1 = SparseMatrix.from_dense_matrix(dense_matrix1)
     sparse_matrix2 = SparseMatrix.from_dense_matrix(dense_matrix2)
-    
+
     # Displaying sparse matrices
     print("Sparse Matrix 1:")
     sparse_matrix1.display()
@@ -72,7 +77,7 @@ if __name__ == '__main__':
     add_matrix = sparse_matrix1.add(sparse_matrix2)
     print("Matrix Addition:")
     add_matrix.display()
-    
+
     dense_matrix3 = [[1, 0], [0, 2], [3, 0]]
     dense_matrix4 = [[0, 0], [4, 0], [0, 5]]
 
@@ -91,20 +96,10 @@ if __name__ == '__main__':
     add_matrix2 = sparse_matrix3.add(sparse_matrix4)
     print("Matrix Addition 2:")
     add_matrix2.display()
-    
-    dense_matrix5 = [
-        [0, 0, 0, 0],
-        [1, 0, 2, 0],
-        [0, 3, 0, 4],
-        [0, 0, 0, 0]
-    ]
 
-    dense_matrix6 = [
-        [0, 1, 0, 0],
-        [0, 0, 2, 0],
-        [3, 0, 0, 4],
-        [0, 0, 5, 0]
-    ]
+    dense_matrix5 = [[0, 0, 0, 0], [1, 0, 2, 0], [0, 3, 0, 4], [0, 0, 0, 0]]
+
+    dense_matrix6 = [[0, 1, 0, 0], [0, 0, 2, 0], [3, 0, 0, 4], [0, 0, 5, 0]]
 
     # Creating sparse matrices from dense matrices
     sparse_matrix5 = SparseMatrix.from_dense_matrix(dense_matrix5)

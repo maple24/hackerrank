@@ -6,16 +6,19 @@ import random
 import re
 import sys
 
+
 # Complete the time_delta function below.
 def time_delta(t1, t2):
     from datetime import datetime
-    t1_datetime = datetime.strptime(t1, '%a %d %b %Y %H:%M:%S %z')
-    t2_datetime = datetime.strptime(t2, '%a %d %b %Y %H:%M:%S %z')
+
+    t1_datetime = datetime.strptime(t1, "%a %d %b %Y %H:%M:%S %z")
+    t2_datetime = datetime.strptime(t2, "%a %d %b %Y %H:%M:%S %z")
 
     return str(abs(int((t1_datetime - t2_datetime).total_seconds())))
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+if __name__ == "__main__":
+    fptr = open(os.environ["OUTPUT_PATH"], "w")
 
     t = int(input())
 
@@ -26,6 +29,6 @@ if __name__ == '__main__':
 
         delta = time_delta(t1, t2)
 
-        fptr.write(delta + '\n')
+        fptr.write(delta + "\n")
 
     fptr.close()
